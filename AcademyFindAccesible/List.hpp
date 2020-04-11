@@ -7,7 +7,7 @@ namespace YAFramework
 	{
 	public:
 		List();
-		List(Node* ptr = nullptr);
+		List(Node* ptr);
 		~List();
 		void MakeEmpty();
 		bool IsEmpty();

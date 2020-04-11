@@ -28,17 +28,17 @@ bool YAFramework::List::IsEmpty()
 	return head == nullptr;
 }
 
-Node * YAFramework::List::First()
+YAFramework::Node * YAFramework::List::First()
 {
 	return this->head;
 }
 
-Node * YAFramework::List::Last()
+YAFramework::Node * YAFramework::List::Last()
 {
 	return this->tail;
 }
 
-void YAFramework::List::Insert(Node * newNode)
+void YAFramework::List::Insert(YAFramework::Node * newNode)
 {
 	if (this->head == nullptr && this->tail == nullptr)
 	{
@@ -47,9 +47,10 @@ void YAFramework::List::Insert(Node * newNode)
 		return;
 	}
 	this->tail->InsertAfter(newNode);
+	this->tail = newNode;
 }
 
-void YAFramework::List::InsertAfter(Node * position, Node * newNode)
+void YAFramework::List::InsertAfter(YAFramework::Node * position, YAFramework::Node * newNode)
 {
 	if (position == nullptr)
 	{
@@ -64,7 +65,7 @@ void YAFramework::List::InsertAfter(Node * position, Node * newNode)
 	}
 	else
 	{
-		Node* temp = this->head;
+		YAFramework::Node* temp = this->head;
 		while (temp != nullptr)
 		{
 			if (temp == position)
@@ -79,8 +80,8 @@ void YAFramework::List::InsertAfter(Node * position, Node * newNode)
 
 void YAFramework::List::FreeList()
 {
-	Node* temp = this->head;
-	Node* tempNext = nullptr;
+	YAFramework::Node* temp = this->head;
+	YAFramework::Node* tempNext = nullptr;
 	while (temp != nullptr)
 	{
 		tempNext = temp->next;
