@@ -2,19 +2,39 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <list>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	std::cout << "Please Enter Number Of Computer And Number Of Connections!" << std::endl;
+	std::cout << "Example :: '5 5' - For 5 computers and 5 connections" << std::endl;
+
+	int numOfComputers = 0;
+	int numOfConnections = 0;
+
+	std::cin >> numOfComputers;
+	std::cin >> numOfConnections;
+
+	std::cout << std::endl;
+	std::cout << "Please Enter The Connections" << std::endl;
+	std::cout << "Example :: '1 4 3 2' This will make 1->4 and 3->2 connections" << std::endl;
+
+	std::vector<std::list<int>> computersVector(numOfComputers);
+
+	int source = 0;
+	int destination = 0;
+	for (int i = 1; i < numOfConnections; i++)
+	{
+		if (i % 2 == 0)
+		{
+			std::cin >> source;
+		}
+		else
+		{
+			std::cin >> destination;
+			// new node
+			//computersVector[source].InsertAfter(computersVector[source].Last());
+		}
+	}
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
