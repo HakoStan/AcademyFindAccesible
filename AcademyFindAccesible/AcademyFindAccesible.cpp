@@ -2,8 +2,7 @@
 //
 
 #include <iostream>
-#include <vector>
-#include <list>
+#include "List.hpp"
 
 int main()
 {
@@ -19,6 +18,8 @@ int main()
 	std::cout << std::endl;
 	std::cout << "Please Enter The Connections" << std::endl;
 	std::cout << "Example :: '1 4 3 2' This will make 1->4 and 3->2 connections" << std::endl;
+
+
 
 	std::vector<std::list<int>> computersVector(numOfComputers);
 
