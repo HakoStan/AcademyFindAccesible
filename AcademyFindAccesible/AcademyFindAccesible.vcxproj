@@ -151,9 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AcademyFindAccesible.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="AccessibleList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccessibleList.hpp" />
+    <ClInclude Include="Color.hpp" />
+    <ClInclude Include="Common.hpp" />
     <ClInclude Include="FreeList.hpp" />
     <ClInclude Include="List.hpp" />
     <ClInclude Include="Node.hpp" />

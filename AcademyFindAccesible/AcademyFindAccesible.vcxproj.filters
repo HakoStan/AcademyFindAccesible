@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -18,11 +14,21 @@
     <Filter Include="YAFramework\FreeList">
       <UniqueIdentifier>{c008f5e9-c9c6-4cd0-9386-8dadc0d3dba8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="YAFramework\Color">
+      <UniqueIdentifier>{0ff8efc4-44ae-4146-ba1f-e1cc06e5db23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AccessibleList">
+      <UniqueIdentifier>{efa9543c-48ec-4a3d-9b3d-e15871542ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{eedf78fb-9c58-4eb4-b937-809bba0ef377}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AcademyFindAccesible.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AccessibleList.cpp">
+      <Filter>AccessibleList</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.hpp">
@@ -33,6 +39,15 @@
     </ClInclude>
     <ClInclude Include="FreeList.hpp">
       <Filter>YAFramework\FreeList</Filter>
+    </ClInclude>
+    <ClInclude Include="AccessibleList.hpp">
+      <Filter>AccessibleList</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.hpp">
+      <Filter>YAFramework\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.hpp">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

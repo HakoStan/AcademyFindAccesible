@@ -18,7 +18,7 @@ namespace YAFramework
 	{
 	public:
 		void MakeEmpty(std::uint32_t size);
-		void FreeList<T>::Insert(T data);
+		void Insert(T data);
 		void InsertAfter(std::uint32_t position, T val);
 		void DeleteAfter(std::uint32_t position);
 	private:
@@ -54,7 +54,7 @@ namespace YAFramework
 	template<typename T>
 	void FreeList<T>::Insert(T data)
 	{
-		if (headList == INVALID_INDEX)
+		if (this->headList == INVALID_INDEX)
 		{
 			this->InsertAfter(this->headFree, data);
 		}
