@@ -57,6 +57,6 @@ int main()
 
 	// Algo 5
 	AccessibleList accessibleListForUserComp(focusComp, numOfComputers);
-	ColorArray colorArr(numOfComputers, YAFramework::Color::White);
-	
+	ColorArray colorArr(numOfComputers + 1, YAFramework::Color::White);
+	accessibleListForUserComp.FindAccessible(networkStructure, colorArr);
 }

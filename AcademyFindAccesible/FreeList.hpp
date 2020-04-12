@@ -2,6 +2,8 @@
 
 #include <vector>
 
+// YA :: TODO :: This List Is recrusive.. 1->2->1 - Maybe need to Fix
+
 namespace YAFramework
 {
 	template <typename T>
@@ -33,7 +35,7 @@ namespace YAFramework
 		this->headFree = 0;
 		this->headList = INVALID_INDEX;
 
-		arr.reserve(size);
+		arr.resize(size);
 
 		for (std::uint32_t i = 0; i < size; i++)
 		{
