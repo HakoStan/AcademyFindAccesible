@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include "List.hpp"
+#include "Node.hpp"
 
 // YA :: TODO :: Add Error Check In Input
 
-void PopulateNetworkStructure(int numOfConnections, YAFramework::List* networkStructure)
+void PopulateNetworkStructure(int numOfConnections, YAFramework::List<std::uint32_t>* networkStructure)
 {
 	int source = 0;
 	int destination = 0;
@@ -19,7 +20,7 @@ void PopulateNetworkStructure(int numOfConnections, YAFramework::List* networkSt
 		else
 		{
 			std::cin >> destination;
-			YAFramework::Node* node = new YAFramework::Node(destination);
+			YAFramework::Node<std::uint32_t>* node = new YAFramework::Node<std::uint32_t>(destination);
 			networkStructure[source].Insert(node);
 		}
 	}
@@ -41,7 +42,8 @@ int main()
 	std::cout << "Please Enter The Connections" << std::endl;
 	std::cout << "Example :: '1 4 3 2' This will make 1->4 and 3->2 connections" << std::endl;
 
+	
 	// Index 0 is not used
-	YAFramework::List* networkStructure = new YAFramework::List[numOfComputers + 1];
+	YAFramework::List<std::uint32_t>* networkStructure = new YAFramework::List<std::uint32_t>[numOfComputers + 1];
 	PopulateNetworkStructure(numOfComputers, networkStructure);
 }

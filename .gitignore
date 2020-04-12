@@ -35,3 +35,4 @@
 # VS
 .vs/*
 Debug/*
+*.tlog

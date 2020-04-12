@@ -12,24 +12,27 @@
     <Filter Include="YAFramework">
       <UniqueIdentifier>{6b4cf1fd-b83c-4b4a-91b0-6f06f5f6f6e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="YAFramework\List">
+      <UniqueIdentifier>{4684fad9-ac72-4a4e-85da-7e7db98e7ea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="YAFramework\FreeList">
+      <UniqueIdentifier>{c008f5e9-c9c6-4cd0-9386-8dadc0d3dba8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AcademyFindAccesible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="List.cpp">
-      <Filter>YAFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>YAFramework</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.hpp">
-      <Filter>YAFramework</Filter>
+      <Filter>YAFramework\List</Filter>
     </ClInclude>
     <ClInclude Include="Node.hpp">
-      <Filter>YAFramework</Filter>
+      <Filter>YAFramework\List</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeList.hpp">
+      <Filter>YAFramework\FreeList</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
