@@ -18,6 +18,7 @@ namespace YAFramework
 	{
 	public:
 		void MakeEmpty(std::uint32_t size);
+		void FreeList<T>::Insert(T data);
 		void InsertAfter(std::uint32_t position, T val);
 		void DeleteAfter(std::uint32_t position);
 	private:
@@ -44,6 +45,25 @@ namespace YAFramework
 			arr[i].next = i + 1;
 		}
 	}
+
+	/*
+	Remarks:
+		Default insert without specified position will always insert after headList
+		Or if no headlist then to headFree
+	*/
+	template<typename T>
+	void FreeList<T>::Insert(T data)
+	{
+		if (headList == INVALID_INDEX)
+		{
+			this->InsertAfter(this->headFree, data);
+		}
+		else
+		{
+			this->InsertAfter(this->headList, data);
+		}
+	}
+
 	template<typename T>
 	void FreeList<T>::InsertAfter(std::uint32_t position, T data)
 	{

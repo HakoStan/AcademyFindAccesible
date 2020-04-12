@@ -7,10 +7,12 @@ namespace YAFramework
 	{
 	public:
 		Node();
-		Node(T item, Node* ptr = nullptr);
+		Node(T item, Node<T>* ptr = nullptr);
 		~Node();
-		void InsertAfter(Node* newNode);
-		Node* DeleteAfter();
+		void InsertAfter(Node<T>* newNode);
+		Node<T>* DeleteAfter();
+		Node<T>* GetNext();
+		T GetData();
 	private:
 		T data;
 		Node* next = nullptr;
@@ -55,5 +57,16 @@ namespace YAFramework
 		}
 		this->next = temp->next;
 		return temp;
+	}
+
+	template<typename T>
+	Node<T>* Node<T>::GetNext()
+	{
+		return this->next;
+	}
+	template<typename T>
+	T Node<T>::GetData()
+	{
+		return this->data;
 	}
 }
