@@ -151,16 +151,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ItemType.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="AccessibleList.cpp" />
+    <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccessibleList.hpp" />
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="FreeList.hpp" />
+    <ClInclude Include="ItemType.hpp" />
     <ClInclude Include="List.hpp" />
     <ClInclude Include="Node.hpp" />
+    <ClInclude Include="Stack.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

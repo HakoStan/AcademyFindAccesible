@@ -37,7 +37,6 @@ namespace YAFramework
 	template <typename T>
 	Node<T>::~Node()
 	{
-		delete this;
 	}
 
 	template <typename T>

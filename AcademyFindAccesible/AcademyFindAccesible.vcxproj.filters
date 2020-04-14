@@ -23,12 +23,21 @@
     <Filter Include="Common">
       <UniqueIdentifier>{eedf78fb-9c58-4eb4-b937-809bba0ef377}</UniqueIdentifier>
     </Filter>
+    <Filter Include="YAFramework\Stack">
+      <UniqueIdentifier>{f9211544-805a-45e9-b1f2-ed4fc53abd03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccessibleList.cpp">
       <Filter>AccessibleList</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Stack.cpp">
+      <Filter>YAFramework\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemType.cpp">
+      <Filter>YAFramework\Stack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.hpp">
@@ -48,6 +57,12 @@
     </ClInclude>
     <ClInclude Include="Common.hpp">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.hpp">
+      <Filter>YAFramework\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemType.hpp">
+      <Filter>YAFramework\Stack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

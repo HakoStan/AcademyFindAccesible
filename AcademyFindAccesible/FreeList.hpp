@@ -23,6 +23,8 @@ namespace YAFramework
 		void Insert(T data);
 		void InsertAfter(std::uint32_t position, T val);
 		void DeleteAfter(std::uint32_t position);
+		FreeListNode<T> Get(std::int32_t position);
+		std::int32_t GetHeadList();
 	private:
 		std::vector<FreeListNode<T>> arr;
 		std::int32_t headList = 0;
@@ -97,5 +99,17 @@ namespace YAFramework
 		// arr[locFree].data = nothing - we don't have default value because it is a template
 		arr[locFree].next = headFree;
 		headFree = locFree;
+	}
+
+	template<typename T>
+	FreeListNode<T> FreeList<T>::Get(std::int32_t position)
+	{
+		return this->arr[position];
+	}
+	
+	template<typename T>
+	std::int32_t FreeList<T>::GetHeadList()
+	{
+		return this->headList;
 	}
 }

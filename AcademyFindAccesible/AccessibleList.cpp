@@ -16,9 +16,9 @@ Params:
 Remark: 
 	This function is actually called only to pass the focusComp as param to the real recursive function
 */
-void AccessibleList::FindAccessible(NetworkStructure*& networkStructure, ColorArray& colorArray)
+void AccessibleList::FindAccessibleRecrusive(NetworkStructure*& networkStructure, ColorArray& colorArray)
 {
-	FindAccessible(networkStructure, colorArray, this->focusComp);
+	FindAccessibleRecrusive(networkStructure, colorArray, this->focusComp);
 }
 
 /*
@@ -28,7 +28,7 @@ Purpose:
 Params: 
 	NetworkStructure, ColorArray. (We don't need focusComputer and accessible list because it is the private members of this class
 */
-void AccessibleList::FindAccessible(NetworkStructure*& networkStructure, ColorArray& colorArray, ComputerId compId)
+void AccessibleList::FindAccessibleRecrusive(NetworkStructure*& networkStructure, ColorArray& colorArray, ComputerId compId)
 {
 	// Point 1
 	colorArray[compId] = YAFramework::Color::Black;
@@ -40,8 +40,56 @@ void AccessibleList::FindAccessible(NetworkStructure*& networkStructure, ColorAr
 	{
 		if (colorArray[tempNode->GetData()] == YAFramework::Color::White)
 		{
-			FindAccessible(networkStructure, colorArray, tempNode->GetData());
+			FindAccessibleRecrusive(networkStructure, colorArray, tempNode->GetData());
 		}
 		tempNode = tempNode->GetNext();
 	}
+}
+
+void AccessibleList::FindAccessibleIterative(NetworkStructure*& networkStructure, ColorArray& colorArray)
+{
+	YAFramework::Stack<State> stateStack;
+	State current;
+	State next;
+
+	current = { this->focusComp, Stage::STAGE1 };
+	stateStack.Push(YAFramework::ItemType<State>(current));
+	while (!stateStack.IsEmpty())
+	{
+		current = stateStack.Pop().GetItem();
+		if (current.stage == Stage::STAGE1)
+		{
+			colorArray[current.computerId] = YAFramework::Color::Black;
+			this->accessibleList.Insert(current.computerId);
+			current.stage = Stage::STAGE2;
+			stateStack.Push(YAFramework::ItemType<State>(current));
+		}
+		else if (current.stage == Stage::STAGE2)
+		{
+			YAFramework::Node<ComputerId>* tempNode = networkStructure[current.computerId].First();
+			while (tempNode != nullptr)
+			{
+				if (colorArray[tempNode->GetData()] == YAFramework::Color::White)
+				{
+					next = {tempNode->GetData(), Stage::STAGE1};
+					stateStack.Push(YAFramework::ItemType<State>(next));
+				}
+				tempNode = tempNode->GetNext();
+			}
+		}
+	}
+}
+
+void AccessibleList::PrintAccessibleList()
+{
+	std::cout << "{";
+	std::int32_t headList = this->accessibleList.GetHeadList();
+	YAFramework::FreeListNode<ComputerId> temp = this->accessibleList.Get(headList);
+	while (temp.next != headList)
+	{
+		std::cout << temp.data << ", ";
+		temp = this->accessibleList.Get(temp.next);
+	}
+	std::cout << temp.data;
+	std::cout << "}";
 }

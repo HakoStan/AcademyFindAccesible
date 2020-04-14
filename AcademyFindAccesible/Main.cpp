@@ -26,7 +26,26 @@ void PopulateNetworkStructure(std::uint32_t& numOfConnections, NetworkStructure*
 	}
 }
 
-// YA :: TODO :: Make Main Smaller
+void RunRecursiveAlgo(ComputerId focusComp, std::uint32_t numOfComputers, NetworkStructure* networkStructure)
+{
+	// Algo 5
+	AccessibleList accessibleListForUserComp(focusComp, numOfComputers);
+	ColorArray colorArr(numOfComputers + 1, YAFramework::Color::White);
+	accessibleListForUserComp.FindAccessibleRecrusive(networkStructure, colorArr);
+	std::cout << "Recrusive Search Output:" << std::endl;
+	accessibleListForUserComp.PrintAccessibleList();
+	std::cout << std::endl;
+}
+
+void RunIterativeAlgo(ComputerId focusComp, std::uint32_t numOfComputers, NetworkStructure* networkStructure)
+{
+	// Solution Recrusive To Iterative
+	AccessibleList accessibleListForUserComp(focusComp, numOfComputers);
+	ColorArray colorArr(numOfComputers + 1, YAFramework::Color::White);
+	accessibleListForUserComp.FindAccessibleIterative(networkStructure, colorArr);
+	std::cout << "Iterative Search Output:" << std::endl;
+	accessibleListForUserComp.PrintAccessibleList();
+}
 
 int main()
 {
@@ -55,8 +74,6 @@ int main()
 	std::cout << "Example :: '3' - for computer index 3" << std::endl;
 	std::cin >> focusComp;
 
-	// Algo 5
-	AccessibleList accessibleListForUserComp(focusComp, numOfComputers);
-	ColorArray colorArr(numOfComputers + 1, YAFramework::Color::White);
-	accessibleListForUserComp.FindAccessible(networkStructure, colorArr);
+	RunRecursiveAlgo(focusComp, numOfComputers, networkStructure);
+	RunIterativeAlgo(focusComp, numOfComputers, networkStructure);
 }

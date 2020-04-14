@@ -39,7 +39,6 @@ namespace YAFramework
 	List<T>::~List()
 	{
 		FreeList();
-		delete this;
 	}
 
 	template <typename T>
