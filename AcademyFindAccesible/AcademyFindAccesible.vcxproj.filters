@@ -32,9 +32,6 @@
       <Filter>AccessibleList</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Stack.cpp">
-      <Filter>YAFramework\Stack</Filter>
-    </ClCompile>
     <ClCompile Include="ItemType.cpp">
       <Filter>YAFramework\Stack</Filter>
     </ClCompile>

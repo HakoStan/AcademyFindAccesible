@@ -3,6 +3,7 @@
 #include "Node.hpp"
 #include "ItemType.hpp"
 #include <stdlib.h>
+#include <iostream>
 
 namespace YAFramework
 {

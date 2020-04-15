@@ -1,5 +1,6 @@
 #pragma once
 #include "Node.hpp"
+#include <cstdint>
 
 namespace YAFramework
 {
@@ -103,7 +104,7 @@ namespace YAFramework
 					temp->InsertAfter(newNode);
 					return;
 				}
-				temp = temp->next;
+				temp = temp->GetNext();
 			}
 		}
 	}
@@ -115,7 +116,7 @@ namespace YAFramework
 		Node<T>* tempNext = nullptr;
 		while (temp != nullptr)
 		{
-			tempNext = temp->next;
+			tempNext = temp->GetNext();
 			delete temp;
 			temp = tempNext;
 		}

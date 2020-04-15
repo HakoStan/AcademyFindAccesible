@@ -16,9 +16,6 @@ namespace YAFramework
 	private:
 		T data;
 		Node* next = nullptr;
-
-		template <typename T>
-		friend class List;
 	};
 
 	template <typename T>

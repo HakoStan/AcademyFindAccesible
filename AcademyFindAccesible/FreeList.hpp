@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-
-// YA :: TODO :: This List Is recrusive.. 1->2->1 - Maybe need to Fix
+#include <cstdint>
 
 namespace YAFramework
 {
@@ -20,7 +19,7 @@ namespace YAFramework
 	{
 	public:
 		void MakeEmpty(std::uint32_t size);
-		void Insert(T data);
+		void InsertToEnd(T data);
 		void InsertAfter(std::uint32_t position, T val);
 		void DeleteAfter(std::uint32_t position);
 		FreeListNode<T> Get(std::int32_t position);
@@ -29,6 +28,7 @@ namespace YAFramework
 		std::vector<FreeListNode<T>> arr;
 		std::int32_t headList = 0;
 		std::int32_t headFree = 0;
+		std::int32_t lastPositionInserted = 0;
 	};
 
 	template<typename T>
@@ -36,6 +36,7 @@ namespace YAFramework
 	{
 		this->headFree = 0;
 		this->headList = INVALID_INDEX;
+		this->lastPositionInserted = this->headFree;
 
 		arr.resize(size);
 
@@ -52,11 +53,10 @@ namespace YAFramework
 
 	/*
 	Remarks:
-		Default insert without specified position will always insert after headList
-		Or if no headlist then to headFree
+		Default insert without specified position will always insert after the last position inserted
 	*/
 	template<typename T>
-	void FreeList<T>::Insert(T data)
+	void FreeList<T>::InsertToEnd(T data)
 	{
 		if (this->headList == INVALID_INDEX)
 		{
@@ -64,7 +64,7 @@ namespace YAFramework
 		}
 		else
 		{
-			this->InsertAfter(this->headList, data);
+			this->InsertAfter(this->lastPositionInserted, data);
 		}
 	}
 
@@ -89,12 +89,20 @@ namespace YAFramework
 		{
 			headList = locNew;
 		}
+
+		this->lastPositionInserted = locNew;
 	}
 
 	template<typename T>
 	void FreeList<T>::DeleteAfter(std::uint32_t position)
 	{
 		std::int32_t locFree = arr[position].next;
+
+		if (locFree == this->lastPositionInserted)
+		{
+			this->lastPositionInserted = position;
+		}
+
 		arr[position].next = arr[locFree].next;
 		// arr[locFree].data = nothing - we don't have default value because it is a template
 		arr[locFree].next = headFree;

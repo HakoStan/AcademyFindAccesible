@@ -2,18 +2,21 @@
 #include "FreeList.hpp"
 #include "Common.hpp"
 #include "Stack.hpp"
+#include "Node.hpp"
 #include <iostream>
 
 enum Stage : std::uint8_t
 {
 	STAGE1 = 0,
-	STAGE2
+	STAGE2,
+	STAGE3
 };
 
 struct State
 {
 	ComputerId computerId;
 	Stage stage;
+	YAFramework::Node<ComputerId>* nodePtr;
 };
 
 class AccessibleList
