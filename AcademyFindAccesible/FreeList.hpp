@@ -51,10 +51,6 @@ namespace YAFramework
 		}
 	}
 
-	/*
-	Remarks:
-		Default insert without specified position will always insert after the last position inserted
-	*/
 	template<typename T>
 	void FreeList<T>::InsertToEnd(T data)
 	{
