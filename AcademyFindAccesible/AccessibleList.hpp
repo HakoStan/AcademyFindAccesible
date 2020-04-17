@@ -8,8 +8,7 @@
 enum Stage : std::uint8_t
 {
 	STAGE1 = 0,
-	STAGE2,
-	STAGE3
+	STAGE2
 };
 
 struct State
