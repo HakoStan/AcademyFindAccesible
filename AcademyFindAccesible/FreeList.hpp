@@ -19,9 +19,9 @@ namespace YAFramework
 	{
 	public:
 		void MakeEmpty(std::uint32_t size);
-		void InsertToEnd(T data);
-		void InsertAfter(std::uint32_t position, T val);
-		void DeleteAfter(std::uint32_t position);
+		std::int32_t InsertToEnd(T data);
+		std::int32_t InsertAfter(std::int32_t position, T val);
+		void DeleteAfter(std::int32_t position);
 		FreeListNode<T> Get(std::int32_t position);
 		std::int32_t GetHeadList();
 	private:
@@ -51,25 +51,21 @@ namespace YAFramework
 		}
 	}
 
-	/*
-	Remarks:
-		Default insert without specified position will always insert after the last position inserted
-	*/
 	template<typename T>
-	void FreeList<T>::InsertToEnd(T data)
+	std::int32_t FreeList<T>::InsertToEnd(T data)
 	{
 		if (this->headList == INVALID_INDEX)
 		{
-			this->InsertAfter(this->headFree, data);
+			return this->InsertAfter(this->headFree, data);
 		}
 		else
 		{
-			this->InsertAfter(this->lastPositionInserted, data);
+			return this->InsertAfter(this->lastPositionInserted, data);
 		}
 	}
 
 	template<typename T>
-	void FreeList<T>::InsertAfter(std::uint32_t position, T data)
+	std::int32_t FreeList<T>::InsertAfter(std::int32_t position, T data)
 	{
 		std::int32_t locNew = headFree;
 		headFree = arr[headFree].next;
@@ -78,12 +74,19 @@ namespace YAFramework
 		{
 			// Error - No More Free Space
 			// Throw std::exception (not sure if i can use it)
-			return;
+			return INVALID_INDEX;
 		}
 
 		arr[locNew].data = data;
-		arr[locNew].next = arr[position].next;
-		arr[position].next = locNew;
+		if (position == INVALID_INDEX)
+		{
+			arr[locNew].next = locNew;
+		}
+		else
+		{
+			arr[locNew].next = arr[position].next;
+			arr[position].next = locNew;
+		}
 
 		if (headList == INVALID_INDEX)
 		{
@@ -91,10 +94,11 @@ namespace YAFramework
 		}
 
 		this->lastPositionInserted = locNew;
+		return locNew;
 	}
 
 	template<typename T>
-	void FreeList<T>::DeleteAfter(std::uint32_t position)
+	void FreeList<T>::DeleteAfter(std::int32_t position)
 	{
 		std::int32_t locFree = arr[position].next;
 

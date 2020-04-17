@@ -16,7 +16,7 @@ struct State
 {
 	ComputerId computerId;
 	Stage stage;
-	YAFramework::Node<ComputerId>* nodePtr;
+	std::int32_t afterThisPosition;
 };
 
 class AccessibleList

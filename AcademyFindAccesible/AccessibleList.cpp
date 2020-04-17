@@ -51,48 +51,39 @@ void AccessibleList::FindAccessibleIterative(NetworkStructure*& networkStructure
 	YAFramework::Stack<State> stateStack;
 	State current;
 	State next;
-	YAFramework::Node<ComputerId>* tempNode = nullptr;
+	int position;
 
-	current = { this->focusComp, Stage::STAGE1, nullptr };
+	current = { this->focusComp, Stage::STAGE1, YAFramework::INVALID_INDEX};
 	stateStack.Push(YAFramework::ItemType<State>(current));
 	while (!stateStack.IsEmpty())
 	{
 		current = stateStack.Pop().GetItem();
 		if (current.stage == Stage::STAGE1)
 		{
-			if (colorArray[current.computerId] == YAFramework::Color::White)
+			colorArray[current.computerId] = YAFramework::Color::Black;
+			if (current.afterThisPosition == YAFramework::INVALID_INDEX)
 			{
-				colorArray[current.computerId] = YAFramework::Color::Black;
-				this->accessibleList.InsertToEnd(current.computerId);
+				position = this->accessibleList.InsertAfter(YAFramework::INVALID_INDEX, current.computerId);
+			}
+			else
+			{
+				position = this->accessibleList.InsertAfter(current.afterThisPosition, current.computerId);
 			}
 			current.stage = Stage::STAGE2;
+			current.afterThisPosition = position;
 			stateStack.Push(YAFramework::ItemType<State>(current));
 		}
 		else if (current.stage == Stage::STAGE2)
 		{
-			tempNode = networkStructure[current.computerId].First();
-			if (tempNode != nullptr)
+			YAFramework::Node<ComputerId>* tempNode = networkStructure[current.computerId].First();
+			while (tempNode != nullptr)
 			{
-				current.nodePtr = tempNode;
-				current.stage = Stage::STAGE3;
-				stateStack.Push(YAFramework::ItemType<State>(current));
 				if (colorArray[tempNode->GetData()] == YAFramework::Color::White)
 				{
-					next = { tempNode->GetData(), Stage::STAGE1, nullptr };
+					next = { tempNode->GetData(), Stage::STAGE1, current.afterThisPosition };
 					stateStack.Push(YAFramework::ItemType<State>(next));
 				}
-			}
-		}
-		else if (current.stage == Stage::STAGE3)
-		{
-			tempNode = current.nodePtr->GetNext();
-			if (tempNode != nullptr)
-			{	
-				current.nodePtr = tempNode;
-				stateStack.Push(YAFramework::ItemType<State>(current));
-
-				next = { tempNode->GetData(), Stage::STAGE1, nullptr };
-				stateStack.Push(YAFramework::ItemType<State>(next));
+				tempNode = tempNode->GetNext();
 			}
 		}
 	}
